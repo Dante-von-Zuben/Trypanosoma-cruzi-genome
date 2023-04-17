@@ -26,11 +26,12 @@ Unzzip both files, create the index directory and bash STAR genome index
 #Paths:
 Output=/your/path/to/index_directory \
 Fasta=/your/path/to/fasta_files.fa \
-GTF=/your/path/to/gtf_files.gtf
+GTF=/your/path/to/gtf_files.gtf \
 
 #Index Biuld:
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 --genomeFastaFiles $Fasta --sjdbGTFfile $GTF
 ```
+
 > **Warning**
 > All files must be decompressed
