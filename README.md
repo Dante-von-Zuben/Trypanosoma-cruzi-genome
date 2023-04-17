@@ -15,9 +15,11 @@ GTF:
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists_euglenozoa1_collection/trypanosoma_cruzi_gca_003719155/dna/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa.gz
 ```
 
-#### 1.2 Now unzzip both files and create the index directory.
+#### 1.2 Creating STAR index
 
-[`Run STAR`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/README.md)
+Unzzip both files, create the index directory and bash STAR genome index
+
+[`Run STAR genome index`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/README.md)
 ```ruby
 #!/usr/bin/env bash
 
