@@ -18,7 +18,7 @@ Run STAR:
 ```ruby
 #!/usr/bin/env bash
 
-#Warning: The file must be decompressed
+#Warning: All files must be decompressed
 
 #Paths:
 Output= /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/index-star \
