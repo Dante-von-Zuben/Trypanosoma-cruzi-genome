@@ -21,8 +21,6 @@ wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists
 ```ruby
 #!/usr/bin/env bash
 
-#WARNING: All files must be decompressed
-
 #Paths:
 Output=/your/path/to/index_directory \
 Fasta=/your/path/to/fasta_files.fa \
@@ -32,3 +30,5 @@ GTF=/your/path/to/gtf_files.gtf
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 --genomeFastaFiles $Fasta --sjdbGTFfile $GTF
 ```
+> **Warning**
+> All files must be decompressed
