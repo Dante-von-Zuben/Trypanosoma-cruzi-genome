@@ -1,0 +1,9 @@
+#Creating Index with Star
+  #Warning: You needt o decompress your file
+
+#!/usr/bin/env bash
+
+STAR --runThreadN 8 --runMode genomeGenerate \
+--genomeDir /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/index-star \
+--genomeFastaFiles /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/genome-tcruzi/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa \
+--sjdbGTFfile /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/gtf/Trypanosoma_cruzi_gca_003719155.ASM371915v1.56.gtf
