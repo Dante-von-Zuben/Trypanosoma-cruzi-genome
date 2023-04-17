@@ -4,13 +4,13 @@
 #### 1. Download the GTF file and the genome of T.cruzi.
 
 
-DNA:
+`DNA:`
 ```
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists_euglenozoa1_collection/trypanosoma_cruzi_gca_003719155/dna/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa.gz
 ```
 
 
-GTF:
+`GTF:`
 ```
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists_euglenozoa1_collection/trypanosoma_cruzi_gca_003719155/dna/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa.gz
 ```
@@ -23,12 +23,12 @@ Unzzip both files, create the index directory and bash STAR genome index [`STAR-
 
 #Paths:
 Output=/your/path/to/index_directory \
-Fasta=/your/path/to/fasta_files.fa \
+Fastqc=/your/path/to/fastqc_files.fa \
 GTF=/your/path/to/gtf_files.gtf \
 
 #Index Biuld:
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
---genomeFastaFiles $Fasta --sjdbGTFfile $GTF
+--genomeFastaFiles $Fastqc --sjdbGTFfile $GTF
 ```
 
 > **Warning**
