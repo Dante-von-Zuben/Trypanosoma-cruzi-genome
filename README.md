@@ -1,4 +1,4 @@
-# Trypanosoma-cruzi-genome
+# Trypanosoma-cruzi with STAR alingment
 Trypanosoma cruzi genome annotation and analysis
 First you need to download the GTF file and the genome of T.cruzi
 
