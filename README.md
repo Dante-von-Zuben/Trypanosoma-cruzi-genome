@@ -17,7 +17,7 @@ wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists
 
 #### 1.2 Now unzzip both files and create the index directory.
 
-([`Run STAR`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/README.md)) :
+[`Run STAR`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/README.md)
 ```ruby
 #!/usr/bin/env bash
 
