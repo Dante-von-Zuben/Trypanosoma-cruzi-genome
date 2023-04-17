@@ -4,9 +4,9 @@
 
 #Paths:
 Output=/your/path/to/index_directory \
-Fasta=/your/path/to/fasta_files.fa \
+Fastqc=/your/path/to/fastqc_files.fa \
 GTF=/your/path/to/gtf_files.gtf \
 
 #Index Biuld:
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
---genomeFastaFiles $Fasta --sjdbGTFfile $GTF
+--genomeFastaFiles $Fastqc --sjdbGTFfile $GTF
