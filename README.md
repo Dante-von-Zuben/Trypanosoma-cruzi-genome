@@ -1,7 +1,7 @@
-# Trypanosoma-cruzi with STAR alingment
-###### Trypanosoma cruzi genome annotation and analysis
+# _Trypanosoma cruzi_ with STAR alingment
+###### _Trypanosoma cruzi_ genome annotation and analysis
 
-#### 1. Download the GTF file and the genome of T.cruzi.
+#### 1. Download the GTF file and the genome of _T.cruzi_.
 
 
 `DNA:`
