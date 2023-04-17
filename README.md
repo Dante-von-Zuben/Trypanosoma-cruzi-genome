@@ -1,30 +1,32 @@
 # Trypanosoma-cruzi with STAR alingment
-##Trypanosoma cruzi genome annotation and analysis
+###### Trypanosoma cruzi genome annotation and analysis
 
-Download the GTF file and the genome of T.cruzi
+#### 1. Download the GTF file and the genome of T.cruzi.
+
 
 DNA:
 ```
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists_euglenozoa1_collection/trypanosoma_cruzi_gca_003719155/dna/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa.gz
 ```
 
+
 GTF:
 ```
 wget https://ftp.ensemblgenomes.ebi.ac.uk/pub/protists/release-56/fasta/protists_euglenozoa1_collection/trypanosoma_cruzi_gca_003719155/dna/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa.gz
 ```
 
-Now unzzip both files and create the index directory.
+#### 1.2 Now unzzip both files and create the index directory.
 
-Run STAR:
+[Run STAR](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/README.md) :
 ```ruby
 #!/usr/bin/env bash
 
-#Warning: All files must be decompressed
+#WARNING: All files must be decompressed
 
 #Paths:
-Output= /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/index-star \
-Fasta= /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/genome-tcruzi/Trypanosoma_cruzi_gca_003719155.ASM371915v1.dna.toplevel.fa \
-GTF= /storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/gtf/Trypanosoma_cruzi_gca_003719155.ASM371915v1.56.gtf
+Output=/your/path/to/index_directory \
+Fasta=/your/path/to/fasta_files.fa \
+GTF=/your/path/to/gtf_files.gtf
 
 #Index Biuld:
 STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
