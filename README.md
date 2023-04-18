@@ -34,9 +34,38 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 > **Warning**
 > All files must be decompressed
 
-# 2. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
+# 2. Samples concatenate
 
-#### 2.1 Creating ID list
+```ruby
+#!/usr/bin/env bash
+
+#Paths
+fastq=/storages/parnamirim/iarasouza/tcruzi/samples/cas9
+id=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/scripts/identificadores.txt
+output=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/cas9-concatenada
+
+#Concatenar fastq files
+cd $fastq
+
+for i in $(cat $id)
+do
+
+#READ 1:
+zcat ${i}1_R1_001.fastq.gz ${i}2_R1_001.fastq.gz \
+> <(gzip ${output}/"concat_"${i}_R1_001.fastq)
+
+#READ 2:
+zcat ${i}1_R2_001.fastq.gz ${i}2_R2_001.fastq.gz \
+> <(gzip ${output}/"concat_"${i}_R2_001.fastq)
+
+
+done
+
+```
+
+# 3. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
+
+#### 3.1 Creating ID list
 > **Note**
 > Needed only for paired-end data
 
@@ -67,9 +96,12 @@ Output - ID.txt:
         1-Cas9cepaGAmosta1_S5_L001_R1
         
         1-Cas9cepaGAmosta1_S5_L001_R2
+	
+	
+
         
  
- #### 2.2 FastQC / MultiQC
+ #### 3.2 FastQC / MultiQC
  Create a directory named fastqc_results
  
  Run FastQC [`do_fastqc`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/do_fastqc)
@@ -99,7 +131,7 @@ To do the data quality control analisys, copy multiqc_report.html to your home:
 scp your.user@00.0.00.00:/path/to/multiqc_report.html ./Downloads/multiqc_report-Tcruzi.html
 ```
  
- ### 2.3 Trim data with FastP
+ ### 3.3 Trim data with FastP
  create a directory named fastp_results
  
 > **Note**
@@ -126,7 +158,7 @@ fastp --in1 ${i}_1.fastq.gz --in2 ${i}_2.fastq.gz \
 done
  ```
  
-### 2.4 Run FastQC and MultiQC for Trimmed data
+### 3.4 Run FastQC and MultiQC for Trimmed data
 > **Warning**
 >Remember to change paths to fastp_results
 
