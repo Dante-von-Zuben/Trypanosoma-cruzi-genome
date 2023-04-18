@@ -33,3 +33,35 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 
 > **Warning**
 > All files must be decompressed
+
+# _Trypanosoma cruzi_ Data Sanity
+
+#### 1. Creating ID list
+Needed only for paired-end data
+run this in your data directory
+```
+cat *.fastq.gz > identf.txt
+```
+```
+sed 's/.\{N\}//' file.txt
+```
+`where N is the distance betwen the end of file name and the "R1" or "R2" read` #tem que melhorar essa linha sed 
+```
+uniq file.txt > ID.txt
+```
+##### Ex:
+Fastq files names:
+
+      1-Cas9cepaGAmosta1_S5_L001_R1_001.fastq.gz
+      
+      1-Cas9cepaGAmosta1_S5_L001_R2_001.fastq.gz
+```
+cat *.fastq.gz > identf.txt
+sed 's/.\{13\}//' file.txt
+uniq file.txt > ID.txt
+```
+ID.txt: 
+
+        1-Cas9cepaGAmosta1_S5_L001_R1
+        
+        1-Cas9cepaGAmosta1_S5_L001_R2
