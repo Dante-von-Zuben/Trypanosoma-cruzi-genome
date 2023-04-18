@@ -1,7 +1,7 @@
-# _Trypanosoma cruzi_ on Vero cells culture - STAR alingment
+# 1. Data Sanity of _Trypanosoma cruzi_ on Vero cells culture - STAR alingment
 ###### _Trypanosoma cruzi_ genome annotation and Data Sanity
 
-#### 1. Download the GTF file and the genome of _T.cruzi_.
+#### 1.1 Download the GTF file and the genome of _T.cruzi_.
 
 
 `DNA:`
@@ -34,9 +34,9 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 > **Warning**
 > All files must be decompressed
 
-# _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
+# 2. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
 
-#### 1. Creating ID list
+#### 2.1 Creating ID list
 > **Note**
 > Needed only for paired-end data
 
@@ -51,8 +51,8 @@ sed 's/.\{N\}//' file.txt
 ```
 uniq file.txt > ID.txt
 ```
-##### Ex:
-Fastq files names:
+#### Example:
+Input - Fastq files names:
 
       1-Cas9cepaGAmosta1_S5_L001_R1_001.fastq.gz
       
@@ -62,8 +62,75 @@ cat *.fastq.gz > identf.txt
 sed 's/.\{13\}//' file.txt
 uniq file.txt > ID.txt
 ```
-ID.txt: 
+Output - ID.txt: 
 
         1-Cas9cepaGAmosta1_S5_L001_R1
         
         1-Cas9cepaGAmosta1_S5_L001_R2
+        
+ 
+ #### 2.2 FastQC / MultiQC
+ Create a directory named fastqc_results
+ 
+ Run FastQC [`do_fastqc`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/do_fastqc)
+ ```ruby
+ #!/usr/bin/env bash
+
+#Paths
+ID=put/your/data/fastqID.txt
+Output=put/your/fastqc/output/directory/fastqc_results
+cd put/your/fastq/data/directory
+
+for i in $(cat $ID)
+
+do
+	fastqc $i -o $Output
+done
+ ```
+ 
+ Run multiQC in fasqc_results directory:
+ 
+ ```
+ multiqc .
+ ```
+Do the data quality control analisys
+
+copy multiqc_report.html to your home
+
+```
+scp your.user@00.0.00.00:/path/to/multiqc_report.html ./Downloads/multiqc_report-Tcruzi.html
+```
+ 
+ ### 2.3 Trim data with FastP
+ create a directory named fastp_results
+ 
+> **Note**
+> If paired-end data:
+ 
+ Run FastP [`do_fastp`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/do_fastp):
+ ```ruby
+#!/usr/bin/env bash
+
+#Paths
+ID=put/your/directory/ID.txt
+Output=put/your/output/directory/fastp_results
+cd put/your/fastq/directoy
+
+
+for i in $(cat $ID)
+do
+
+fastp --in1 ${i}_1.fastq.gz --in2 ${i}_2.fastq.gz \
+--out1 ${ID}/"trimmed_"${i}"_1".fastq.gz \
+--out2 ${ID}/"trimmed_"${i}"_2".fastq.gz \
+--detect_adapter_for_pe -w 8 -q 25 --cut_front 3 --cut_tail 3
+
+done
+ ```
+ 
+### 2.4 Run FastQC and MultiQC for Trimmed data
+> **Warning**
+>Remember to change paths to fastp_results
+
+# 4. _Trypanosoma cruzi_ Alingment with STAR
+# 4. _Trypanosoma cruzi_ Data Sanity
