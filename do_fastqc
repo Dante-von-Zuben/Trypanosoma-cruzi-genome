@@ -3,7 +3,7 @@
 #Paths
 ID=put/your/data/fastqID.txt
 Output=put/your/fastqc/output/directory/fastqc_results
-cd put/your/fasq/data/directory
+cd put/your/fastq/data/directory
 
 for i in $(cat $ID)
 
