@@ -34,10 +34,11 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 > **Warning**
 > All files must be decompressed
 
-# _Trypanosoma cruzi_ Data Sanity
+# _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
 
 #### 1. Creating ID list
-Needed only for paired-end data
+> **Note**
+> Needed only for paired-end data
 run this in your data directory
 ```
 cat *.fastq.gz > identf.txt
