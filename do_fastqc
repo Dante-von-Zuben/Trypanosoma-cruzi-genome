@@ -2,12 +2,11 @@
 
 #Paths
 ID=put/your/data/fastqID.txt
-Output=put/your/fastqc/output/directory/fastqc-results
+Output=put/your/fastqc/output/directory/fastqc_results
 cd put/your/fasq/data/directory
 
 for i in $(cat $ID)
+
 do
-
 	fastqc $i -o $Output
-
 done
