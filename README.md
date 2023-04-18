@@ -100,10 +100,9 @@ zcat ${i}1_R2_001.fastq.gz ${i}2_R2_001.fastq.gz \
 > <(gzip ${output}/"concat_"${i}_R2_001.fastq)
 
 done
-
-cd $output gzip *.fastq
-
 ```
+>**Note**
+>Compress the output fastq files
 
 # 3. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
 
