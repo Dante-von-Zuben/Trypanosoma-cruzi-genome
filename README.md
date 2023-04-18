@@ -1,5 +1,5 @@
 # _Trypanosoma cruzi_ on Vero cells culture - STAR alingment
-###### _Trypanosoma cruzi_ genome annotation and analysis
+###### _Trypanosoma cruzi_ genome annotation and Data Sanity
 
 #### 1. Download the GTF file and the genome of _T.cruzi_.
 
