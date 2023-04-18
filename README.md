@@ -40,7 +40,7 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 > **Note**
 > Needed only for paired-end data
 
-Run this code in your Fastq data directory:
+Run this command in your Fastq data directory:
 ```
 cat *.fastq.gz > identf.txt
 ```
