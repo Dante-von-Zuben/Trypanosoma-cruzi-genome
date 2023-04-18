@@ -93,9 +93,7 @@ done
  ```
  multiqc .
  ```
-Do the data quality control analisys
-
-copy multiqc_report.html to your home
+To do the data quality control analisys, copy multiqc_report.html to your home:
 
 ```
 scp your.user@00.0.00.00:/path/to/multiqc_report.html ./Downloads/multiqc_report-Tcruzi.html
