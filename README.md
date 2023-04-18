@@ -39,7 +39,8 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 #### 1. Creating ID list
 > **Note**
 > Needed only for paired-end data
-run this in your data directory
+
+Run this code in your Fastq data directory:
 ```
 cat *.fastq.gz > identf.txt
 ```
