@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+#Paths
+ID=put/your/data/fastqID.txt
+Output=put/your/fastqc/output/directory/fastqc-results
+
+for i in $(ls $ID)
+do
+
+	fastqc $i -o $Output
+
+done
