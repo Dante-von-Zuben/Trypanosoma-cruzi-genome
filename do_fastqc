@@ -5,7 +5,7 @@ ID=put/your/data/fastqID.txt
 Output=put/your/fastqc/output/directory/fastqc-results
 cd put/your/fasq/data/directory
 
-for i in $(ls $ID)
+for i in $(cat $ID)
 do
 
 	fastqc $i -o $Output
