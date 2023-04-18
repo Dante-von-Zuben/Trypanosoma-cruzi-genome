@@ -35,7 +35,48 @@ STAR --runThreadN 8 --runMode genomeGenerate --genomeDir $Output \
 > All files must be decompressed
 
 # 2. Samples concatenate
+#### 2.1 Creating ID list
 
+Run this file:
+```ruby
+#Paths
+fastq=Put/your/fastq/path
+
+#Criar identificadores
+ls $fastq > tmp.txt
+sed 's/.\{N\}$//' tmp.txt > tmp2.txt
+uniq tmp2.txt > identificadores.txt
+rm tmp.txt tmp2.txt
+```
+`where N is the distance betwen the end of file name and the "R1" or "R2" read` (:NUMBER:) #tem que melhorar essa linha sed 
+
+#### Example:
+Input - Fastq files names:
+
+      1-Cas9cepaGAmosta1_S5_L001_R1_001.fastq.gz
+      
+      1-Cas9cepaGAmosta1_S6_L001_R2_001.fastq.gz
+```
+#!/usr/bin/env bash
+
+#Paths
+fastq=/storages/parnamirim/iarasouza/tcruzi/samples/cas9
+
+#Criar identificadores
+ls $fastq > tmp.txt
+sed 's/.\{17\}$//' tmp.txt > tmp2.txt
+uniq tmp2.txt > identificadores.txt
+rm tmp.txt tmp2.txt
+```
+Output: 
+
+        1-Cas9cepaGAmosta1_S5_L00
+        
+        1-Cas9cepaGAmosta1_S6_L00
+	
+	
+
+        
 ```ruby
 #!/usr/bin/env bash
 
@@ -58,48 +99,19 @@ zcat ${i}1_R1_001.fastq.gz ${i}2_R1_001.fastq.gz \
 zcat ${i}1_R2_001.fastq.gz ${i}2_R2_001.fastq.gz \
 > <(gzip ${output}/"concat_"${i}_R2_001.fastq)
 
-
 done
+
+cd $output gzip *.fastq
 
 ```
 
 # 3. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
 
-#### 3.1 Creating ID list
+id list
 > **Note**
 > Needed only for paired-end data
 
-Run this command in your Fastq data directory:
-```
-cat *.fastq.gz > identf.txt
-```
-```
-sed 's/.\{N\}//' file.txt
-```
-`where N is the distance betwen the end of file name and the "R1" or "R2" read` #tem que melhorar essa linha sed 
-```
-uniq file.txt > ID.txt
-```
-#### Example:
-Input - Fastq files names:
 
-      1-Cas9cepaGAmosta1_S5_L001_R1_001.fastq.gz
-      
-      1-Cas9cepaGAmosta1_S5_L001_R2_001.fastq.gz
-```
-cat *.fastq.gz > identf.txt
-sed 's/.\{13\}//' file.txt
-uniq file.txt > ID.txt
-```
-Output - ID.txt: 
-
-        1-Cas9cepaGAmosta1_S5_L001_R1
-        
-        1-Cas9cepaGAmosta1_S5_L001_R2
-	
-	
-
-        
  
  #### 3.2 FastQC / MultiQC
  Create a directory named fastqc_results
