@@ -75,7 +75,7 @@ Output:
         1-Cas9cepaGAmosta1_S6_L00
 	
 	
-
+Concatenate with this command:
         
 ```ruby
 #!/usr/bin/env bash
