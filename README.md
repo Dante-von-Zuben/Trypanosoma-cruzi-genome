@@ -85,7 +85,7 @@ fastq=/storages/parnamirim/iarasouza/tcruzi/samples/cas9
 id=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/scripts/identificadores.txt
 output=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/cas9-concatenada
 
-#Concatenar fastq files
+#Concatenate fastq files
 cd $fastq
 
 for i in $(cat $id)
@@ -93,16 +93,16 @@ do
 
 #READ 1:
 zcat ${i}1_R1_001.fastq.gz ${i}2_R1_001.fastq.gz \
-> <(gzip ${output}/"concat_"${i}_R1_001.fastq)
+> ${output}/"concat_"${i}_R1_001.fastq
 
 #READ 2:
 zcat ${i}1_R2_001.fastq.gz ${i}2_R2_001.fastq.gz \
-> <(gzip ${output}/"concat_"${i}_R2_001.fastq)
+> ${output}/"concat_"${i}_R2_001.fastq
 
 done
 ```
 >**Note**
->Compress the output fastq files
+>May be good to compress the output fastq files
 
 # 3. _Trypanosoma cruzi_ Quality Control (FastQC / MultiQC)
 
@@ -112,7 +112,20 @@ id list
 
 
  
- #### 3.2 FastQC / MultiQC
+ #### 3.2 FastQC / MultiQC / seqkit
+ 
+ Remove the small reads
+ ```ruby
+ cd fastq/files/directory
+ for i in $ (ls *.fastq.gz)
+ do
+ 
+ seqkit seq ${i} -m 90 -M101 -g -o output/directory/"QC_"${i}
+ 
+ done
+ ```
+ 
+ 
  Create a directory named fastqc_results
  
  Run FastQC [`do_fastqc`](https://github.com/Dante-von-Zuben/Trypanosoma-cruzi-genome/blob/main/do_fastqc)
@@ -142,7 +155,7 @@ To do the data quality control analisys, copy multiqc_report.html to your home:
 scp your.user@00.0.00.00:/path/to/multiqc_report.html ./Downloads/multiqc_report-Tcruzi.html
 ```
  
- ### 3.3 Trim data with FastP
+ ### --3.3 Trim data with FastP-- #NOT NEEDED
  create a directory named fastp_results
  
 > **Note**
@@ -168,10 +181,46 @@ fastp --in1 ${i}_1.fastq.gz --in2 ${i}_2.fastq.gz \
 
 done
  ```
- 
-### 3.4 Run FastQC and MultiQC for Trimmed data
-> **Warning**
->Remember to change paths to fastp_results
 
 # 4. _Trypanosoma cruzi_ Alingment with STAR
+[`STAR manual`](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)
+
+Align with this command:
+
+```ruby
+#Paths
+reads=path/to/fastq/reads
+idx=/path/to/index-star
+output=path/to/output/STAR_alignment
+
+#IF PAIRED-END:
+#read1
+R1=s1read1.fastq.gz,\
+s2read1.fastq.gz,\
+s3read1.fastq.gz,\
+s4read1.fastq.gz,
+#(...)
+
+#read2
+R2=s1read2.fastq.gz,\
+s2read2.fastq.gz,\
+s3read2.fastq.gz,\
+s4read2.fastq.gz,
+#(...)
+
+#Alingment
+STAR --genomeDir ${idx} --runThreadN 12 --genomeLoad LoadAndExit
+
+STAR --readFilesIn ${reads}/${R1} ${R2} \
+--readFilesCommand zcat \
+--outReadsUnmapped Fastx \
+--genomeDir ${idx} \
+--runThreadN 12 \
+--outSAMtype BAM SortedByCoordinate \
+--twopassMode \
+--quantMode GeneCounts \
+--limitBAMsortRAM 64
+
+STAR --genomeDir ${idx} --genomeLoad Remove
+```
 # 4. _Trypanosoma cruzi_ Data Sanity
