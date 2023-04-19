@@ -223,4 +223,6 @@ STAR --readFilesIn ${reads}/${R1} ${R2} \
 
 STAR --genomeDir ${idx} --genomeLoad Remove
 ```
+>**Note**
+>If you have too many files, must be good to change --readFilesIn to --readfilesManifest (manifest must be created, see more at [STAR manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) 
 # 4. _Trypanosoma cruzi_ Data Sanity
