@@ -175,8 +175,8 @@ for i in $(cat $ID)
 do
 
 fastp --in1 ${i}_1.fastq.gz --in2 ${i}_2.fastq.gz \
---out1 ${ID}/"trimmed_"${i}"_1".fastq.gz \
---out2 ${ID}/"trimmed_"${i}"_2".fastq.gz \
+--out1 ${Output}/"trimmed_"${i}"_1".fastq.gz \
+--out2 ${Output}/"trimmed_"${i}"_2".fastq.gz \
 --detect_adapter_for_pe -w 8 -q 25 --cut_front 3 --cut_tail 3
 
 done
