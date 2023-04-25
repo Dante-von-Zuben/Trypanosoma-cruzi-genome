@@ -60,7 +60,7 @@ Input - Fastq files names:
 #!/usr/bin/env bash
 
 #Paths
-fastq=/storages/parnamirim/iarasouza/tcruzi/samples/cas9
+fastq=/samples/cas9
 
 #Criar identificadores
 ls $fastq > tmp.txt
@@ -81,9 +81,9 @@ Concatenate with this command:
 #!/usr/bin/env bash
 
 #Paths
-fastq=/storages/parnamirim/iarasouza/tcruzi/samples/cas9
-id=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/scripts/identificadores.txt
-output=/storages/parnamirim/iarasouza/tcruzi/genome/tcruzi/cas9-concatenada
+fastq=samples/cas9
+id=/identificadores.txt
+output=/cas9-concatenada
 
 #Concatenate fastq files
 cd $fastq
