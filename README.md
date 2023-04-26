@@ -182,7 +182,8 @@ fastp --in1 ${i}_1.fastq.gz --in2 ${i}_2.fastq.gz \
 done
  ```
 
-# 4. _Trypanosoma cruzi_ Alingment with STAR
+# 4. _Trypanosoma cruzi_ Alingment 
+## 4.1 with STAR
 [`STAR manual`](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)
 
 Align with this command:
@@ -225,4 +226,6 @@ STAR --genomeDir ${idx} --genomeLoad Remove
 ```
 >**Note**
 >If you have too many files, must be good to change --readFilesIn to --readfilesManifest (manifest must be created, see more at [STAR manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) 
+
+## 4.2 With Bowtie2
 # 4. _Trypanosoma cruzi_ Data Sanity
