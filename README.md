@@ -228,4 +228,26 @@ STAR --genomeDir ${idx} --genomeLoad Remove
 >If you have too many files, must be good to change --readFilesIn to --readfilesManifest (manifest must be created, see more at [STAR manual](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) 
 
 ## 4.2 With Bowtie2
+
+data=/path/to/reads
+idx=/path/to/index
+id=/path/to/identifiers.txt
+
+for i in $(cat $id)
+do
+bowtie2 \
+-t \
+-p 6 \
+-x $idx/idx-Bowtie2 \
+-1 ${data}/${i}1.fastq.gz \
+-2 ${data}/${i}2.fastq.gz \
+-S Align-Unmapped/"Aligned_"${i}.sam \
+--very-sensitive \
+2> Align-Unmapped/${i}.log;
+done
+
+## 4.3 Gene count with featureCounts (Only for bowtie2 alignment)
+
+featureCounts -t exon -a /path/to/gtfFile.gtf -o /path/for/outputfile.txt  BAMorSAMfiles.sam
+
 # 4. _Trypanosoma cruzi_ Data Sanity
